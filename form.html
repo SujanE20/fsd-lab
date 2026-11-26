@@ -1,0 +1,168 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Registration Form</title>
+        
+        <style>
+            * { box-sizing: border-box; }
+
+            body {
+                margin: 0;
+                padding: 30px;
+                font-family: Arial;
+                background: linear-gradient(135deg, #74ebd5, #9face6);
+            }
+
+            form {
+                width: 400px;
+                max-width: 100%;
+                margin: auto;
+                padding: 25px;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 5px 20px #555;
+            }
+
+            h2 { text-align: center; }
+
+            label {
+                display: block;
+                margin: 10px 0 5px;
+                font-weight: bold;
+            }
+
+            input, select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            .error {
+                display: block;
+                color: red;
+                font-size: 12px;
+                min-height: 15px;
+            }
+
+            button {
+                width: 48%;
+                padding: 10px;
+                margin-top: 15px;
+                border: 0;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            button[type="submit"] {
+                background: #4CAF50;
+                color: white;
+            }
+
+            button[type="reset"] { background: #6936f4; color: white; }
+        </style>
+    </head>
+
+    <body>
+
+    <form id="registrationform">
+
+        <h2>Registration Form</h2>
+
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Enter username">
+        <span id="usernameError" class="error"></span>
+
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter email">
+        <span id="emailError" class="error"></span>
+
+        <label>Mobile Number</label>
+        <input type="text" id="mobile" placeholder="10 digit number">
+        <span id="mobileError" class="error"></span>
+        
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter password">
+        <span id="passwordError" class="error"></span>
+        
+
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm password">
+        <span id="confirmPasswordError" class="error"></span>
+
+        <label>Branch</label>
+        <select id="branch">
+            <option value="">Select Branch</option>
+            <option>CSE</option>
+            <option>IS</option>
+            <option>AIML</option>
+            <option>DATA SCIENCE (DS)</option>
+            <option>DATA ANALYST (DA)</option>
+        </select>
+        <span id="branchError" class="error"></span>
+
+        <label>Upload File</label>
+        <input type="file" id="uploadFile" accept=".png,.jpg,.jpeg,.pdf">
+        <span id="uploadFileError" class="error"></span>
+
+        <button type="submit">Register</button>
+        <button type="reset">Reset</button>
+
+    </form>
+    <script>
+        document.getElementById("registrationform")
+        .addEventListener("submit",function(event){
+            // prevent the page refresh
+            event.preventDefault();
+
+            let username = document.getElementById("username").value.trim();// trim() is used to remove whitespace from both ends of a string
+            let email = document.getElementById("email").value.trim();
+            let mobile = document.getElementById("mobile").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            let usernameError = document.getElementById("usernameError");
+            let emailError = document.getElementById("emailError");
+            let mobileError = document.getElementById("mobileError");
+            let passwordError = document.getElementById("passwordError");
+            let confirmPasswordError = document.getElementById("confirmPasswordError");
+
+            usernameError.textContent = "";
+            emailError.textContent = ""; 
+            mobileError.textContent = "";
+            passwordError.textContent = "";
+            confirmPasswordError.textContent = "";
+
+            let Valid = true;
+            if(username.length <6){
+                usernameError.textContent = " length should be at least 6 characters";
+                Valid = false;
+            }
+            let emailPattern = /^[a-z0-9]+@[A-Za-z0-9]+\.[A-Za-z]+$/;
+            if(!emailPattern.test(email)){
+                emailError.textContent = "Invalid email format";
+                Valid = false;
+            }
+            let mobilePattern = /^\d{10}$/;
+            if(!mobilePattern.test(mobile)){
+                mobileError.textContent = "Mobile number should be 10 digits";
+                Valid = false;
+            }
+            let testpasword=/^(?=.*[A-Za-z])(?=.*\d).+$/;
+            if(!testpasword.test(password)){
+                passwordError.textContent = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character";
+                Valid = false;
+            }  
+            if(password !== confirmPassword){
+                    confirmPasswordError.textContent = "Passwords do not match";
+                    Valid = false;
+                }   
+        }
+    );
+        
+    </script>
+
+
+
+    </body>
+    </html>

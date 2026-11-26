@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>marks to cgpa converter</title>
+    <style>
+        body {
+            max-width: 520px;
+            margin: 40px auto;
+            padding: 24px;
+            font-family: Arial, sans-serif;
+            background-color: #f2f6fb;
+            color: #243447;
+            
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #175a8e;
+            text-align: center;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            margin: 10px 0;
+            padding: 12px 16px;
+            font-style: italic;
+            font-weight: bold;
+            border-radius: 4px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+        }
+
+        #studentCount {
+            padding: 12px;
+            border-radius: 4px;
+            background-color: #d9f2e6;
+            color: #176b45;
+            font-weight: bold;
+            text-align: center;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <h2> SUJAN E 4NI24CS221 Students with CGPA 9 or Above</h2>
+    <ul id="studentList"></ul>
+    <p id="studentCount"></p>
+    
+    <script>
+        const students = [
+            {name:"sujan",avgmarks:95},
+            {name:"shashi bava",avgmarks:90},
+            {name:'karthik',avgmarks:55},
+            {name:'magulli',avgmarks:50},
+            {name:'vibhu',avgmarks:90},
+            {name:'uday',avgmarks:99}
+        ];
+
+        const studentsWithCgpa = students.map(student => ({
+            ...student,
+            cgpa: student.avgmarks / 10
+        }));
+
+        const studentsWithHighCgpa = studentsWithCgpa.filter(
+            student => student.cgpa >= 9
+        );
+
+        const totalStudents = studentsWithHighCgpa.reduce(
+            count => count + 1,
+            0
+        );
+
+        const studentList = document.getElementById("studentList");
+        studentsWithHighCgpa.forEach(student => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${student.name} - CGPA: ${student.cgpa.toFixed(1)}`;
+            studentList.appendChild(listItem);
+        });
+
+        document.getElementById("studentCount").textContent =
+            `Total students with CGPA 9 or above: ${totalStudents}`;
+    </script>
+</body>
+</html>

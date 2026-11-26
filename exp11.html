@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #srs {
+            color: #000;
+            background-color: aquamarine;
+            padding: 25px;
+            border: 5px solid #000;
+            margin-left: 50px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>4NI24CS221 SUJAN E</h1>
+        <div id="srs">
+            this is shashank ranaggapa sureban alias shashi bhava
+            cool guys!
+        </div>
+    </center>
+    <center>
+    <button id="clickBtn">click me</button>
+    <br>
+    <br>
+    <div>
+        <label>Type:</label>
+        <input type="text" id="typeInput">
+        <span id="typeOutput"></span>
+    </div>
+    <br>
+    <div>
+        <label>Focus:</label>
+        <input type="text" id="focusInput">
+        <span id="focusOutput"></span>
+    </div>
+    </center>
+
+    <script>
+        const button = document.getElementById('clickBtn');
+
+        button.addEventListener('click', function () {
+            button.style.color = 'red';
+            button.style.background = 'blue';
+            button.textContent = 'thank_you_for_clicking';
+        });
+
+        const mouse = document.getElementById('srs');
+
+        mouse.addEventListener('mouseover', function () {
+            mouse.style.color = 'red';
+            mouse.style.backgroundColor = 'yellow';
+        });
+        mouse.addEventListener('mouseout', function () {
+            mouse.style.color = '#000';
+            mouse.style.backgroundColor = 'aquamarine';
+        });
+
+        const typeInput = document.getElementById('typeInput');
+        const typeOutput = document.getElementById('typeOutput');
+        const focusInput = document.getElementById('focusInput');
+        const focusOutput = document.getElementById('focusOutput');
+
+        typeInput.addEventListener('keypress', function () {
+            typeOutput.style.color = 'red';
+            typeOutput.style.backgroundColor = 'blue';
+            typeOutput.textContent = typeInput.value;
+        });
+
+        focusInput.addEventListener('focus', function () {
+            focusOutput.style.color = 'red';
+            focusOutput.style.backgroundColor = 'blue';
+            focusOutput.textContent = 'Input is focused';
+        });
+
+        focusInput.addEventListener('blur', function () {
+            focusOutput.style.color = 'green';
+            focusOutput.style.backgroundColor = 'lightgreen';
+            focusOutput.textContent = 'Input lost focus';
+        });
+    </script>
+</body>
+</html>

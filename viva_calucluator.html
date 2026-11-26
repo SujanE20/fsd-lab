@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator {
+            width: 280px;
+            margin: auto;
+            padding: 15px;
+            background-color: #8b8383;
+            border-radius: 6px;
+        }
+
+        #display {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 0;
+            font-size: 22px;
+            text-align: right;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+
+        button {
+            padding: 15px;
+            border: 0;
+            background-color: #1ce247;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c54848;
+        }
+
+        .operator {
+            box-sizing:auto;
+            background-color: rgb(119, 0, 255);
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input id="display" type="text">
+        <div class="buttons">
+            <button type="button" onclick="clearDisplay()">C</button>
+            <button type="button" onclick="deleteNumber()">AC</button>
+            <button class="operator" type="button" onclick="addValue('%')">%</button>
+            <button class="operator" type="button" onclick="addValue('/')">/</button>
+            <button type="button" onclick="addValue('7')">7</button>
+            <button type="button" onclick="addValue('8')">8</button>
+            <button type="button" onclick="addValue('9')">9</button>
+            <button class="operator" type="button" onclick="addValue('*')">*</button>
+            <button type="button" onclick="addValue('4')">4</button>
+            <button type="button" onclick="addValue('5')">5</button>
+            <button type="button" onclick="addValue('6')">6</button>
+            <button class="operator" type="button" onclick="addValue('-')">-</button>
+            <button type="button" onclick="addValue('1')">1</button>
+            <button type="button" onclick="addValue('2')">2</button>
+            <button type="button" onclick="addValue('3')">3</button>
+            <button class="operator" type="button" onclick="addValue('+')">+</button>
+            <button type="button" onclick="addValue('0')">0</button>
+            <button type="button" onclick="addValue('.')">.</button>
+            <button class="operator" type="button" onclick="calculate()">RESULT</button>
+            
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+
+        function addValue(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function deleteNumber() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            display.value = Function(`return ${display.value}`)();
+        }
+    </script>
+</body>
+</html>
